@@ -1,0 +1,17 @@
+{
+    "projectName": "AuditTrail",
+    "username": "audittrail@infosys.com",
+    "id": "b8e52d60-a219-11e9-a92e-a9eaf4dc1038",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://ap5.salesforce.com",
+    "workspace": "/Users/skhandelwal/Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}

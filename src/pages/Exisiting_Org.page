@@ -1,0 +1,18 @@
+<apex:page controller="Exisiting_Org_Controller">
+    <apex:form >
+        <apex:actionFunction action="{!redirect}" name="redirectAction"/>
+        <apex:panelGrid width="70%" columns="2">
+            <apex:pageBlock title="Select an Org">
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem helpText="Select the org for auditing" >
+                        <apex:outputLabel value="Existing Orgs" />
+                        <apex:selectList required="true" id="chooseOrg" value="{!selectedOrgID}" onchange="redirectAction()" size="1"  style="width:200px;">
+                            <apex:selectOptions value="{!listOfOrgs}"/>
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                    
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:panelGrid>
+    </apex:form>
+</apex:page>

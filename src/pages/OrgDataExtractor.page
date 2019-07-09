@@ -1,0 +1,57 @@
+<apex:page controller="OrgDataExtractor_Controller" docType="HTML-5.0">
+    <apex:form >
+        <apex:actionFunction name="callAudit" reRender="theLink, theGrid, dateRange" />
+        <apex:panelGrid width="100%" columns="2">
+            <apex:outputPanel id="dateRange">
+                <apex:pageBlock title="Date Range">
+                    <apex:pageBlockSection >
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Start Date"></apex:outputLabel> 
+                            <apex:inputField value="{!dateRange.Start_Date__c}" required="true" />
+                            
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="End Date"></apex:outputLabel> 
+                            <apex:inputField value="{!dateRange.End_Date__c}" required="true" />
+                            
+                        </apex:pageBlockSectionItem>
+                        
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons location="bottom">
+                        <apex:commandButton value="Fetch" action="{!extractAudit}" oncomplete="callAudit();" status="loading" />
+                    </apex:pageBlockButtons>  
+                </apex:pageBlock>
+            </apex:outputPanel>
+        </apex:panelGrid>
+        <apex:actionStatus id="loading">
+            <apex:facet name="start">
+                <center>
+                    <img src="{!$Resource.loading_image}" />
+               </center>
+            </apex:facet>
+        </apex:actionStatus>
+        <apex:outputPanel id="theLink" >
+            <apex:outputText rendered="{!success == true}">The last 20 entries for your organization are listed below. You can
+                
+                <apex:outputLink value="/servlet/servlet.FileDownload?file={!docId}" target="_blank"> download</apex:outputLink> 
+                your organization's setup audit trail for the date range specified (Excel .csv file).
+            </apex:outputText>
+        </apex:outputPanel>
+        
+        <apex:panelGrid width="100%" columns="2" >
+            <apex:outputPanel id="theGrid">
+                <apex:pageBlock title="Audit Data" rendered="{!success == true}">
+                    <apex:pageBlockTable value="{!auditDataWrapperList}" var="audit" rows="20" >
+                        <apex:column headerValue="Date" value="{!audit.createdDate}"/>
+                        <apex:column headerValue="Email" value="{!audit.createdByEmail}"/>
+                        <!--<apex:column headerValue="User" value="{!audit.createdByName}"/>-->
+                        <apex:column headerValue="Action" value="{!audit.display}"/>
+                        <apex:column headerValue="Section" value="{!audit.Section}"/>
+                        <apex:column headerValue="Delegate User" value="{!audit.delegateUser}"/>
+                        
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+            </apex:outputPanel>
+        </apex:panelGrid>
+    </apex:form>
+</apex:page>

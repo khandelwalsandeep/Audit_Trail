@@ -1,0 +1,11 @@
+<apex:page controller="RemoteOAuth_Landing_Controller" action="{!extract}">
+    <apex:form >
+        <apex:pageBlock title="Welcome">
+            <apex:pageBlockSection >
+                <apex:outputLabel >Response Received</apex:outputLabel>
+                <apex:outputText >{!responseReceived}</apex:outputText>
+            </apex:pageBlockSection>
+            <apex:commandButton value="Extract" action="{!extract}" rendered="{!responseReceived == 'Authentication was successfull'}" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

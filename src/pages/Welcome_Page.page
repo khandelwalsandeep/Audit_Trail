@@ -1,0 +1,18 @@
+<apex:page sidebar="false" >
+    <apex:pageBlock >
+        <center>
+            <h1>
+                Welcome to Audit Trail !!
+            </h1>
+            <br></br><br></br><br></br>
+        <h2>
+            Select any existing org or new org
+        </h2>
+        <br></br><br></br><br></br>
+        <apex:form >
+            <apex:commandButton value="New Org" onclick="window.open('/apex/New_Org');"/> &nbsp;&nbsp;
+            <apex:commandButton value="Existing Org" onclick="window.open('/apex/Exisiting_Org');"/> 
+        </apex:form>
+    </center>
+</apex:pageBlock>
+</apex:page>
